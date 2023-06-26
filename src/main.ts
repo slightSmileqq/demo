@@ -1,5 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+// 引入样式
+import '@/style/index.scss'
 // 引入插件
 import '@/plugIn'
 // 引入路由
