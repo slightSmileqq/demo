@@ -7,9 +7,9 @@
 </template>
 <script setup lang="ts">
 import LuckyMoney from "@/views/luckyMoneyOne/components/luckyMoney.vue";
-import {ComponentPublicInstance, ref, h, render, onMounted} from "vue";
+import {ref, h, render, onMounted} from "vue";
 
-const luckyMoneyContainerRef = ref<ComponentPublicInstance>()
+const luckyMoneyContainerRef = ref<HTMLImageElement>()
 
 // 创建红包
 function createLuckyMoney() {
@@ -20,9 +20,10 @@ function createLuckyMoney() {
    * 然后再将这个div容器的第一个子元素（就是我们创建的红包）使用原生的方式添加到luckyMoneyContainerRef容器中，这样就避免了上述的问题。
    * */
       // 使用h函数创建虚拟dom，再使用render函数将虚拟dom渲染为真实dom，最后将真实dom添加到容器中
-  const container = document.createElement('div')
+  const container: HTMLDivElement = document.createElement('div')
   render(h(LuckyMoney), container)
-  luckyMoneyContainerRef.value?.appendChild(container.firstElementChild)
+  const firstChild = container.firstElementChild
+  firstChild && luckyMoneyContainerRef.value?.appendChild(firstChild)
 }
 
 // 定时创建红包
@@ -33,7 +34,7 @@ function createLuckyMoney() {
  */
 function createLuckyMoneyInterval(duration: number, timeInterval: number) {
   // 定时器存放变量
-  let timer: number | null = null
+  let timer: NodeJS.Timer | null = null
   // 定时器开始时间
   const startTime = new Date().getTime()
   console.log('开始掉落红包')
@@ -43,7 +44,7 @@ function createLuckyMoneyInterval(duration: number, timeInterval: number) {
     // 当前时间戳 - 定时器开始时间 > 持续时长
     if (now - startTime >= duration) {
       // 清除定时器
-      clearInterval(timer)
+      clearInterval(timer as NodeJS.Timer)
       timer = null
       console.log('结束掉落红包')
     } else {

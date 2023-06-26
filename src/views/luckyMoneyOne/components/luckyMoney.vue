@@ -3,9 +3,9 @@
        src="../../../assets/images/luckyMoney.png" alt="">
 </template>
 <script setup lang="ts">
-import {ComponentPublicInstance, onMounted, reactive, ref} from 'vue';
+import {onMounted, reactive, ref} from 'vue';
 
-const luckyMoneyRef = ref<ComponentPublicInstance>()
+const luckyMoneyRef = ref<HTMLElement>()
 // 下落轨道
 const orbit = reactive([0, 15, 35, 55, 75])
 // 下落轨道随机位置

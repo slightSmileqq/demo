@@ -24,7 +24,7 @@ interface LuckyMoneyData {
 export default class LuckyMoney {
     // 红包图片背景     默认值：defaultUrl
     private readonly url: string;
-    // 图片宽度        默认值：this.height ? 'auto' : '20vw'
+    // 图片宽度        默认值：'20vw'
     private readonly width: string;
     // 图片高度        默认值：this.width ? 'auto' : '20vw'
     private readonly height: string;
@@ -37,15 +37,15 @@ export default class LuckyMoney {
     // 动画持续时长      默认值： `${Math.random() * 5 + 1}s`
     private readonly animationDuration: string;
     // img元素，用于销毁红包
-    private img: HTMLImageElement;
+    private img: HTMLImageElement = document.createElement('img');
     // 图片点击事件回调
-    private readonly imgClickCallback: () => void;
+    private readonly imgClickCallback: (() => void) | undefined;
 
     // 构造函数
     constructor(data: LuckyMoneyData) {
         data = data || {}
         this.url = data.url || defaultUrl;
-        this.width = data.width || this.height ? 'auto' : '20vw'
+        this.width = data.width || '20vw'
         this.height = data.height || this.width ? 'auto' : '20vw'
         this.parent = data.parent || document.body;
         this.orbit = data.orbit || [0, 15, 35, 55, 75]

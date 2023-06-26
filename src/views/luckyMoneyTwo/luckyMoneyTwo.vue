@@ -5,9 +5,10 @@
 </template>
 <script setup lang="tsx">
 import LuckyMoneyClass from './luckyMoneyClass'
-import {ComponentPublicInstance, onMounted, onUnmounted, ref} from "vue";
+import {onMounted, ref} from "vue";
 
-const luckyMoneyContainerRef = ref<ComponentPublicInstance>()
+const luckyMoneyContainerRef = ref<HTMLElement>()
+
 // 定时创建红包
 /**
  * 创建红包定时器
@@ -16,7 +17,7 @@ const luckyMoneyContainerRef = ref<ComponentPublicInstance>()
  */
 function createLuckyMoneyInterval(duration: number, timeInterval: number) {
   // 定时器存放变量
-  let timer: number | null = null
+  let timer: NodeJS.Timer | null = null
   // 定时器开始时间
   const startTime = new Date().getTime()
   console.log('开始掉落红包')
@@ -26,7 +27,7 @@ function createLuckyMoneyInterval(duration: number, timeInterval: number) {
     // 当前时间戳 - 定时器开始时间 > 持续时长
     if (now - startTime >= duration) {
       // 清除定时器
-      clearInterval(timer)
+      clearInterval(timer as NodeJS.Timer)
       timer = null
       console.log('结束掉落红包')
     } else {
@@ -37,6 +38,7 @@ function createLuckyMoneyInterval(duration: number, timeInterval: number) {
     }
   }, timeInterval);
 }
+
 onMounted(() => {
   createLuckyMoneyInterval(5000, 200)
 })
