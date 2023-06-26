@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import {ref} from 'vue'
 
 defineProps<{ msg: string }>()
 
@@ -7,6 +7,7 @@ const count = ref(0)
 </script>
 
 <template>
+  <div class="demo"><div class="demo1"></div></div>
   <van-button type="primary">111111111</van-button>
   <h1>{{ msg }}</h1>
 
@@ -21,7 +22,7 @@ const count = ref(0)
   <p>
     Check out
     <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
+    >create-vue</a
     >, the official Vue + Vite starter
   </p>
   <p>
@@ -32,8 +33,16 @@ const count = ref(0)
   <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .read-the-docs {
   color: #888;
+}
+
+.demo {
+  .demo1 {
+    height: 100px;
+    width: 375px;
+    background-color: red
+  }
 }
 </style>
