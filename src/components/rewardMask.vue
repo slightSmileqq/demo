@@ -1,7 +1,7 @@
 <template>
   <van-overlay :show="isShowMask" @click="close">
     <div class="wrapper" @click.stop>
-      <div class="reward">
+      <div class="reward" v-if="amount">
         <span class="reward-description">恭喜获得</span>
         <div>
           <span class="reward-amount">{{ amount }}</span>
@@ -34,7 +34,7 @@ const amount = ref('')
 
 // 获取本次奖励的金额
 async function getAmount() {
-  const res = await getRedPacketRecord(props.luckyMoneyKey || 'f5f99b71deb44cf5ade8bf3f639c3558')
+  const res = await getRedPacketRecord(props.luckyMoneyKey)
   amount.value =  res.data ? res.data.toFixed(2) : '0.00'
 }
 
@@ -48,6 +48,7 @@ function show() {
 function close() {
   isShowMask.value = false
   props.closeCallback && props.closeCallback()
+  amount.value = ''
 }
 
 // 对外暴露的方法

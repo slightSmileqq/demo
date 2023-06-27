@@ -3,7 +3,9 @@
     <div class="wrapper" @click.stop>
       <van-count-down v-if="isShowMask" :time="countdown" @finish="countDownFinish">
         <template #default="{seconds}">
-          <span class="countdown-time">{{ seconds }}</span>
+          <Transition name="countdown-time" mode="out-in">
+            <span :key="seconds" class="countdown-time">{{ seconds }}</span>
+          </Transition>
         </template>
       </van-count-down>
     </div>
@@ -66,5 +68,12 @@ defineExpose({
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
+.countdown-time-enter-active,
+.countdown-time-leave-active {
+  transition: opacity  0.3s linear;
+}
+.countdown-time-enter-from,
+.countdown-time-leave-to {
+  opacity: 0;
+}
 </style>
