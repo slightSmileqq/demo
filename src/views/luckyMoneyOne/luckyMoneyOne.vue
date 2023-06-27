@@ -1,16 +1,24 @@
 <template>
-
-  <div class="lucky-money-container" ref="luckyMoneyContainerRef">
-
+  <div class="page-container">
+11111
   </div>
-
+<!--  红包活动容器-->
+  <div v-if="isShowLuckyMoneyActive" class="lucky-money-container" ref="luckyMoneyContainerRef"></div>
 </template>
 <script setup lang="ts">
 import LuckyMoney from "@/views/luckyMoneyOne/components/luckyMoney.vue";
 import {ref, h, render, onMounted} from "vue";
 
 const luckyMoneyContainerRef = ref<HTMLImageElement>()
-
+const isShowLuckyMoneyActive = ref(false)
+// 开启红包活动
+function startLuckyMoneyActive() {
+  isShowLuckyMoneyActive.value = true
+}
+// 关闭红包活动
+function closeLuckyMoneyActive() {
+  isShowLuckyMoneyActive.value = false
+}
 // 创建红包
 function createLuckyMoney() {
   /**
@@ -33,6 +41,8 @@ function createLuckyMoney() {
  * @param timeInterval 时间间隔 单位ms
  */
 function createLuckyMoneyInterval(duration: number, timeInterval: number) {
+  // 红包活动开始
+  startLuckyMoneyActive()
   // 定时器存放变量
   let timer: NodeJS.Timer | null = null
   // 定时器开始时间
@@ -47,6 +57,8 @@ function createLuckyMoneyInterval(duration: number, timeInterval: number) {
       clearInterval(timer as NodeJS.Timer)
       timer = null
       console.log('结束掉落红包')
+      // 红包活动结束
+      closeLuckyMoneyActive()
     } else {
       // 创建红包
       createLuckyMoney()
@@ -60,11 +72,18 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+.page-container{
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+}
 .lucky-money-container {
   position: fixed;
   top: 0;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  /*红包雨背景颜色，渐变，微透明*/
+  background: linear-gradient(180deg, rgba(255,215,0,0.1) 0%, rgba(255,165,0,0.3) 100%);
 }
 </style>

@@ -7,11 +7,18 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    LuckyMoney: typeof import('./src/views/home/components/luckyMoney.vue')['default']
+    CountdownMask: typeof import('./src/components/countdownMask.vue')['default']
+    LuckyMoney: typeof import('./src/components/luckyMoney.vue')['default']
+    RewardMask: typeof import('./src/components/rewardMask.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     VanButton: typeof import('vant/es')['Button']
     VanCol: typeof import('vant/es')['Col']
+    VanCountDown: typeof import('vant/es')['CountDown']
+    VanDivider: typeof import('vant/es')['Divider']
+    VanField: typeof import('vant/es')['Field']
+    VanOverlay: typeof import('vant/es')['Overlay']
     VanRow: typeof import('vant/es')['Row']
+    VanStepper: typeof import('vant/es')['Stepper']
   }
 }
