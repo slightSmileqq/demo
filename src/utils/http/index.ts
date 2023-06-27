@@ -28,7 +28,6 @@ service.interceptors.request.use(
             localStorage.setItem('token', Math.random().toString(36).substr(2) + Math.random().toString(36).substr(2))
             token = localStorage.getItem('token')
         }
-        console.log('token', token)
         if (token) {
             config.headers.token = token
         }

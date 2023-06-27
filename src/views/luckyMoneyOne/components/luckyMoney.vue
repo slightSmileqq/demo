@@ -5,6 +5,14 @@
 <script setup lang="ts">
 import {onMounted, reactive, ref} from 'vue';
 
+const props = defineProps({
+  clickCallback: {
+    type: Function,
+    default: () => {
+    }
+  }
+})
+
 const luckyMoneyRef = ref<HTMLElement>()
 // 下落轨道
 const orbit = reactive([0, 15, 35, 55, 75])
@@ -17,6 +25,7 @@ const animationDuration = `${Math.random() * 3 + 2}s`
  */
 const onclickHandle = () => {
   destroy()
+  props.clickCallback && props.clickCallback()
 }
 /**
  * 销毁红包
