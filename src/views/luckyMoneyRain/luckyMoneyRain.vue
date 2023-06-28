@@ -165,9 +165,6 @@ function autoStartLuckyMoneyActive() {
   showCountdownMask()
 
 }
-
-//#endregion
-
 onMounted(() => {
   const route = useRoute()
   if (route.query.activityKey) {
@@ -184,6 +181,8 @@ onMounted(() => {
   }
 
 })
+//#endregion
+
 </script>
 
 <style scoped lang="scss">
