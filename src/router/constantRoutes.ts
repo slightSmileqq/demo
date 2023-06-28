@@ -5,7 +5,7 @@ export const staticRoutes: RouteRecordRaw[] = [
         name: 'luckyMoneyOne',
         component: () => import('@/views/luckyMoneyOne/luckyMoneyOne.vue'),
         meta: {
-            title: 'luckyMoneyOne',
+            title: '方式一',
         },
     },
     {
@@ -13,7 +13,15 @@ export const staticRoutes: RouteRecordRaw[] = [
         name: 'luckyMoneyTwo',
         component: () => import('@/views/luckyMoneyTwo/luckyMoneyTwo.vue'),
         meta: {
-            title: 'luckyMoneyTwo',
+            title: '方式二',
+        },
+    },
+    {
+        path: '/luckyMoneyRain',
+        name: 'luckyMoneyRain',
+        component: () => import('@/views/luckyMoneyRain/luckyMoneyRain.vue'),
+        meta: {
+            title: '红包雨',
         },
     },
     {

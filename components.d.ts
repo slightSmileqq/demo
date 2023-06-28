@@ -21,5 +21,7 @@ declare module 'vue' {
     VanOverlay: typeof import('vant/es')['Overlay']
     VanRow: typeof import('vant/es')['Row']
     VanStepper: typeof import('vant/es')['Stepper']
+    VanSwipe: typeof import('vant/es')['Swipe']
+    VanSwipeItem: typeof import('vant/es')['SwipeItem']
   }
 }
