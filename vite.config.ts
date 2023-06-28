@@ -28,7 +28,7 @@ export default defineConfig((config) => {
                 [env.VITE_APP_BASE_API]: {
                     target: env.VITE_APP_BASE_URL,
                     changeOrigin: true,
-                    rewrite: (path) => path.replace(/^\/dev-api/, ''),
+                    rewrite: (path) => path.replace( new RegExp(`^${env.VITE_APP_BASE_API}`), ''),
                 },
             },
         },

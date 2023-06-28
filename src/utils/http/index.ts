@@ -11,7 +11,7 @@ import {ResultData} from "@/utils/http/type.ts";
 export const service: AxiosInstance = axios.create({
     // 判断环境设置不同的baseURL
     baseURL:
-        import.meta.env.NODE_ENV === 'development'
+        import.meta.env.VITE_APP_NODE_ENV === 'development'
             ? import.meta.env.VITE_APP_BASE_API
             : import.meta.env.VITE_APP_BASE_URL,
     timeout: 25000,
