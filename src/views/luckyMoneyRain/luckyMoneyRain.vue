@@ -165,15 +165,24 @@ function autoStartLuckyMoneyActive() {
   showCountdownMask()
 
 }
+
 onMounted(() => {
   const route = useRoute()
   if (route.query.activityKey) {
     console.log(route.query.activityKey)
-    const { connect } = useWebsocket(`ws://139.198.163.91:8888/api/websocket/${route.query.activityKey}/${localStorage.getItem('token')}`, (res:LuckyMoneyActive) => {
+    const {
+      connect,
+      disconnect
+    } = useWebsocket(`ws://rb.atguigu.cn:8888/api/websocket/${route.query.activityKey}/${localStorage.getItem('token')}`, (res: LuckyMoneyActive) => {
       duration.value = res.duration
       generationRate.value = res.generationRate
       luckyMoneyKey.value = res.redPackageKey
       autoStartLuckyMoneyActive()
+      // 3s后断开连接
+      setTimeout(() => {
+        disconnect()
+      }, 3000)
+
     });
     connect()
   } else {
