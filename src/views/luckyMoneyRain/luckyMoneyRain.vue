@@ -169,7 +169,7 @@ onMounted(() => {
   const route = useRoute()
   if (route.query.activityKey) {
     console.log(route.query.activityKey)
-    const { connect } = useWebsocket(`ws://139.198.163.91:7777/api/websocket/${route.query.activityKey}/${localStorage.getItem('token')}`, (res:LuckyMoneyActive) => {
+    const { connect } = useWebsocket(`ws://139.198.163.91:8888/api/websocket/${route.query.activityKey}/${localStorage.getItem('token')}`, (res:LuckyMoneyActive) => {
       duration.value = res.duration
       generationRate.value = res.generationRate
       luckyMoneyKey.value = res.redPackageKey
