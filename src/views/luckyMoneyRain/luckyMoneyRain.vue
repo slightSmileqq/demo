@@ -173,7 +173,7 @@ onMounted(() => {
     const {
       connect,
       disconnect
-    } = useWebsocket(`ws://rb.atguigu.cn:8888/api/websocket/${route.query.activityKey}/${localStorage.getItem('token')}`, (res: LuckyMoneyActive) => {
+    } = useWebsocket(`ws://rb.atguigu.cn/api/websocket/${route.query.activityKey}/${localStorage.getItem('token')}`, (res: LuckyMoneyActive) => {
       duration.value = res.duration
       generationRate.value = res.generationRate
       luckyMoneyKey.value = res.redPackageKey
