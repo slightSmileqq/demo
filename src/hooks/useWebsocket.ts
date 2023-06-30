@@ -26,7 +26,6 @@ export default function useWebsocket(url:string, onMessage:(res:any)=>void,heart
 
       socketTask.value.onclose = () => {
         console.log('WebSocket连接已关闭');
-        isDisconnect.value = true;
         if (isDisconnect.value) {
           setTimeout(() => {
             console.log('WebSocket尝试重新连接');
@@ -37,6 +36,7 @@ export default function useWebsocket(url:string, onMessage:(res:any)=>void,heart
 
       socketTask.value.onerror =(error:any) => {
         console.error('WebSocket连接发生错误:', error);
+        isDisconnect.value = true;
       }
 
       socketTask.value.onmessage = (res:{data:string}) => {
@@ -50,6 +50,7 @@ export default function useWebsocket(url:string, onMessage:(res:any)=>void,heart
   };
   // 断开连接
   const disconnect = () => {
+    console.log('主动断开')
     if (socketTask.value) {
       isDisconnect.value = false;
       socketTask.value.close();
