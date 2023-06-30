@@ -8,7 +8,7 @@ import http from '@/utils/http'
  */
 export function creatRedPacket(totalMoney: number, totalNumber: number) {
     return http.get<string>(
-        `/api/send/${totalMoney}/${totalNumber}`,
+        `/api/v1/send/${totalMoney}/${totalNumber}`,
     )
 }
 
@@ -18,7 +18,7 @@ export function creatRedPacket(totalMoney: number, totalNumber: number) {
  */
 export function getRedPacket(redPackageKey: string) {
     return http.get(
-        `/api/rob2/${redPackageKey}`,
+        `api/v2/rob/${redPackageKey}`,
     )
 }
 
@@ -29,6 +29,6 @@ export function getRedPacket(redPackageKey: string) {
  */
 export function getRedPacketRecord(redPackageKey: string) {
     return http.get<number>(
-        `/api/record2/${redPackageKey}`,
+        `/api/v2/record/${redPackageKey}`,
     )
 }
